@@ -1,7 +1,7 @@
 import io from "socket.io-client";
 import { USE_LOCAL_WS } from "@/config";
 import { getConnectionInfo } from "@/services/room";
-import { Score } from "./page";
+import { Score } from "./GameClientComponent";
 import { MutableRefObject } from "react";
 import { getNickname, getSantaColor } from "@/lib/utils";
 import { UP, DOWN, LEFT, RIGHT, NONE, MoveDirection } from "@common/input";
