@@ -1,6 +1,6 @@
 import { MapManager } from "../map/map-manager";
 import { Collidable } from "../traits/collidable";
-import { NONE, UP, DOWN, LEFT, RIGHT } from "../../common/input";
+import { NONE, UP, DOWN, LEFT, RIGHT } from "../common/input";
 
 export const PLAYER_SIZE = 32;
 

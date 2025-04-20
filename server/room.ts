@@ -5,8 +5,8 @@ import { maxBy } from "lodash";
 import { PLAYER_SIZE, Player } from "./entities/player";
 import { MapManager } from "./map/map-manager";
 import { Snowball } from "./entities/snowball";
-import { NONE } from "../common/input";
-import { RoomConfig } from "../common/room-info";
+import { NONE } from "./common/input";
+import { RoomConfig } from "./common/room-info";
 
 export async function createRoom(
   roomId: string,

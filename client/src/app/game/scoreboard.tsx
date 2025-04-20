@@ -19,7 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Score } from "./page";
+import { Score } from "./types";
 import clsx from "clsx";
 import { getIconDetails } from "@/lib/player-options";
 
@@ -38,7 +38,15 @@ export function ScoreBoard({
         accessorKey: "santaColor",
         header: "",
         cell(value) {
-          const { image, alt } = getIconDetails(value.row.original.santaColor);
+          const allowedColors = ["Red", "Green", "Blue", "Purple", "Yellow", "Teal"] as const;
+          const santaColor = value.row.original.santaColor;
+
+          const safeColor = allowedColors.includes(santaColor as typeof allowedColors[number])
+            ? (santaColor as typeof allowedColors[number])
+            : "Red";
+
+          const { image, alt } = getIconDetails(safeColor);
+
           return (
             <div className="flex gap-2 justify-center">
               <Image src={`/${image}`} width={12} height={12} alt={alt} />
@@ -92,18 +100,13 @@ export function ScoreBoard({
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id} className="text-black p-2">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id} className="text-black p-2">
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
@@ -116,10 +119,7 @@ export function ScoreBoard({
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="p-2">
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>

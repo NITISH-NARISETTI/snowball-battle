@@ -1,8 +1,8 @@
 import { loadMap } from "./map-loader";
 import { Collidable } from "../traits/collidable";
 import { isColliding } from "../utils/geom";
-import { MAP_OPTIONS, MapKey } from "../../common/map-options";
-import { TileType } from "../../common/map-types";
+import { MAP_OPTIONS, MapKey } from "../common/map-options";
+import { TileType } from "../common/map-types";
 
 export const TILE_SIZE = 32;
 
